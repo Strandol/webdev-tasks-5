@@ -1,0 +1,19 @@
+.notes {
+    width: 25%;
+    display: inline-block;
+}
+
+.notes__note {
+    width: 100%;
+    display: inline-block;
+}
+
+.notes__note textarea {
+    width: 100%;
+    resize: none;
+}
+
+.note__saveNote,
+.note__deleteNote {
+    display: none;
+}

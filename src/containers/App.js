@@ -6,13 +6,20 @@ import AddNote from '../components/AddNote'
 import * as noteActions from '../actions/noteActions'
 
 class App extends Component {
+    onClick(event) {
+        if (event.target.className.includes('notes__note')) {
+            this.props.noteActions.resetNote(event.target);
+        } else {
+            this.props.noteActions.resetNote(event.target.parentNode);
+        }
+    }
+
     render() {
         var notesList = this.props.notes;
         var actions = this.props.noteActions;
         console.log('TRY TO RENDER');
         return (
-            <div>
-                <h1>TODO-хи</h1>
+            <div onClick={::this.onClick}>
                 <Notes data={notesList} noteActions={actions}/>
                 <AddNote addNote={actions} />
             </div>

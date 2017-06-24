@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
 
 module.exports = {
     devtool: 'eval-source-map',
@@ -14,23 +16,30 @@ module.exports = {
         publicPath: '/static/'
     },
     module: {
-        loaders: [
+        rules: [
             {
-                loader: 'react-hot-loader',
-                include: [
-                    path.resolve(__dirname, 'src')
-                ],
-                test: /\.js$/,
-                options: {
-                    plugins: ['transform-runtime']
-                }
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
             },
             {
-                loader: 'babel-loader',
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
-                test: /\.js$/
+                use: [
+                    {
+                        loader: 'react-hot-loader',
+                        options: {
+                            plugins: ['transform-runtime']
+                        }
+                    },
+                    {
+                        loader: 'babel-loader'
+                    }
+                ]
             }
         ]
     },
